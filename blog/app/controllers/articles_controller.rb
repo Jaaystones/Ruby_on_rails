@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+# create a new article
   def new
     @article = Article.new
   end
@@ -20,6 +21,7 @@ class ArticlesController < ApplicationController
     end
   end
 
+# edit and update a new article.
   def edit
     @article = Article.find(params[:id])
   end
@@ -33,6 +35,7 @@ class ArticlesController < ApplicationController
     end
   end
 
+# delete an article
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
