@@ -1,10 +1,20 @@
 class ArticlesController < ApplicationController
+  http_basic_authenticate_with name: "Jaystones", password: "Jogolo12345", except: [:index, :show]
+
+
   def index
     @articles = Article.all
   end
 
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    if @article
+      # Article found, continue with normal flow
+    else
+      # Article not found, handle the case (e.g., redirect to index page)
+      redirect_to articles_path, alert: 'Article not found.'
+    end
   end
 
 # create a new article
@@ -17,6 +27,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to @article
     else
+      Rails.logger.info(@article.errors.inspect)
       render :new, status: :unprocessable_entity
     end
   end
@@ -45,7 +56,7 @@ class ArticlesController < ApplicationController
   
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status)
     end
 end
 
