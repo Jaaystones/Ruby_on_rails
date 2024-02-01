@@ -63,3 +63,6 @@ Modifying the views and controllers to handle visibility status
 Logging validation errors in the create action for debugging
 
 ```
+
+# Resources
+[ABC of rails](https://guides.rubyonrails.org/)
